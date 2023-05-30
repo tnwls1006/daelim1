@@ -1,8 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../img/logo.png";
-import User from "../img/user.png";
-import Chat from "../img/chat.png";
 
 
 const MainMenu = () => {
@@ -10,14 +7,14 @@ const MainMenu = () => {
   
   return(
     <div className="mainmenu">
-      <Link to="/main" className="logo">
-        <img src={Logo} alt="" />
+      <Link to="/" className="logo">
+        <img src="img/logo.png" alt="" />
         <div className="icon">
-          <Link to="/user">
-          <img src={User} alt="" />
+          <Link to="/mypage">
+          <img src="img/user.png" alt="" />
           </Link>
-          <Link to="/">
-          <img src={Chat} alt="" />
+          <Link to="/home">
+          <img src="img/chat.png" alt="" />
           </Link>
         </div>
       </Link>

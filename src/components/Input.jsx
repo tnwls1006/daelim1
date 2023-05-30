@@ -1,6 +1,4 @@
 import React, { useContext, useState } from "react";
-import Img from "../img/img.png";
-// import Attach from "../img/attach.png"; 클립모양
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 import {
@@ -10,7 +8,7 @@ import {
   Timestamp,
   updateDoc,
 } from "firebase/firestore";
-import { db, storage } from "../firebase";
+import { db, storage } from '../firebase-config';
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
@@ -63,7 +61,7 @@ const Input = () => {
       [data.chatId + ".date"]: serverTimestamp(),
     });
 
-    await updateDoc(doc(db, "userChats", data.user.uid), {
+    await updateDoc(doc(db, "userChats", data.users.uid), {
       [data.chatId + ".lastMessage"]: {
         text,
       },
@@ -73,6 +71,7 @@ const Input = () => {
     setText("");
     setImg(null);
   };
+  
   return (
     <div className="input">
       <input
@@ -82,17 +81,10 @@ const Input = () => {
         value={text}
       />
       <div className="send">
-        {/* <img src={Attach} alt="" />
-        <input
-          type="file"
-          style={{ display: "none" }}
-          id="file"
-          onChange={(e) => setImg(e.target.files[0])}
-        /> */}
         <label htmlFor="file">
-          <img src={Img} alt="" />
+          <img src="img/img.png" alt=""/>
         </label>
-        <button onClick={handleSend}>Send</button>
+        <button onClick={handleSend}>보내기</button>
       </div>
     </div>
   );

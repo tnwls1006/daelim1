@@ -1,7 +1,4 @@
 import React, { useContext } from "react";
-// import Cam from "../img/cam.png";
-// import Add from "../img/add.png";
-// import More from "../img/more.png";
 import Messages from "./Messages";
 import Input from "./Input";
 import { ChatContext } from "../context/ChatContext";
@@ -12,13 +9,7 @@ const Chat = () => {
   return (
     <div className="chat">
       <div className="chatInfo">
-        <span>{data.user?.displayName}</span>
-        <div className="chatIcons">
-          { /* chatIcons : 없어도 될거 */
-          /* <img src={Cam} alt="" />
-          <img src={Add} alt="" />
-          <img src={More} alt="" /> */}
-        </div>
+        <span>{data.user?.name}</span>
       </div>
       <Messages />
       <Input/>

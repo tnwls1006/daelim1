@@ -11,7 +11,6 @@ const Message = ({ message }) => {
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
-  // 최신 메세지로 자동
 
   return (
     <div
@@ -27,9 +26,7 @@ const Message = ({ message }) => {
           }
           alt=""
         />
-        <span>{ message.senderId === currentUser.uid
-              ? currentUser.displayName
-              : data.user.displayName}</span>
+        <span>just now</span>
       </div>
       <div className="messageContent">
         <p>{message.text}</p>
