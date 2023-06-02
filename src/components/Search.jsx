@@ -12,7 +12,6 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase-config";
 import { AuthContext } from "../context/AuthContext";
-
 const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
