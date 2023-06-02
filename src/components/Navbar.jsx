@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
+import { ChatContext } from '../context/ChatContext';
 
 const Navbar = () => {
   const {currentUser} = useContext(AuthContext);
@@ -8,8 +9,8 @@ const Navbar = () => {
     <div className='navbar'>
       <span className="logo">Daelim 101</span>
       <div className="user">
-        <img src={currentUser.file} alt="" />
-        <span>{currentUser.name}</span>
+        <img src={currentUser.photoURL} alt="" />
+        {/* <span>{currentUser.newName}</span> */}
       </div>
     </div>
   )

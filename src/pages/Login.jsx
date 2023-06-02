@@ -1,38 +1,67 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
+import { auth } from "../firebase-config";
+import '../styles/Login.css';
 import { useNavigate, Link } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
-
 const Login = () => {
-  const [err, setErr] = useState(false);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  // 로그인 메서드 이용
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
-
+    setPersistence(auth, browserSessionPersistence)
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/")
-    } catch (err) {
-      setErr(true);
+      const userCredential = await signInWithEmailAndPassword(auth,
+        email,
+        password
+      );
+      console.log(userCredential);
+      console.log('로그인성공');
+      alert("로그인 성공 메인페이지로 이동합니다.");
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+      alert("로그인실패")
     }
   };
+
   return (
-    <div className="formContainer">
-      <div className="formWrapper">
-        <span className="logo">Chat</span>
-        <span className="title">Login</span>
+
+    <div className="All">
+      <section className="login-form">
+        <h1>Login</h1>
         <form onSubmit={handleSubmit}>
-          <input type="email" placeholder="email" />
-          <input type="password" placeholder="password" />
-          <button>Sign in</button>
-          {err && <span>Something went wrong</span>}
+          <div className="int-area">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="int-area">
+            <input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="btn-area">
+            <button type="submit" id="btn">로그인</button>
+          </div>
         </form>
-        <p>You don't have an account? <Link to="/register">Register</Link></p>
-      </div>
+        <div className="caption">
+          <Link to="/">메인 화면</Link>
+          <Link to="/signup">회원가입</Link>
+        </div>
+      </section>
     </div>
+
+
   );
 };
 
