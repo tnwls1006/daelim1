@@ -76,7 +76,7 @@ const MainPage = () => {
           <li><img className="weblogo" src="img/logo.png" /></li>
         </div>
         <div className="Rhead">
-          <div>
+          <div className='Nav'>
             <Link to="worldcup"><p>월드컵 가기</p></Link>
             {emailVerified || <Link to="login"><p>로그인</p></Link>}
             {emailVerified || <Link to="signup"><p>회원가입</p></Link>}

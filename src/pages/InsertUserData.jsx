@@ -185,7 +185,7 @@ const InsertUserData = () => {
       alert("Please upload an image first!");
       }
       
-      const storageRef = ref(storage, `/user/${user}/${file.name}`);
+      const storageRef = ref(storage, `/users/${newStudentNo}`);
       
       // progress can be paused and resumed. It also exposes progress updates.
       // Receives the storage reference and the file to upload.
@@ -219,7 +219,7 @@ const InsertUserData = () => {
     try{
 
       const date = new Date().getTime();
-      const storageRef = ref(storage, `/user/${newName}/${newStudentNo}`);
+      const storageRef = ref(storage, `/users/${newStudentNo}`);
 
       await uploadBytesResumable(storageRef, file).then(() => {
       getDownloadURL(storageRef).then(async (downloadURL) => {
