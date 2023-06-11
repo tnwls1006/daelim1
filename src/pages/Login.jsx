@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
-import { auth } from "../firebase-config";
+import { auth } from "../config/firebase-config";
 import '../styles/Login.css';
 import { useNavigate, Link } from "react-router-dom";
 const Login = () => {

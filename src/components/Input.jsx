@@ -8,7 +8,7 @@ import {
   Timestamp,
   updateDoc,
 } from "firebase/firestore";
-import { db, storage } from '../firebase-config';
+import { db, storage } from '../config/firebase-config';
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
@@ -61,7 +61,7 @@ const Input = () => {
       [data.chatId + ".date"]: serverTimestamp(),
     });
 
-    await updateDoc(doc(db, "userChats", data.users.uid), {
+    await updateDoc(doc(db, "userChats", data.user.uid), {
       [data.chatId + ".lastMessage"]: {
         text,
       },
@@ -81,9 +81,9 @@ const Input = () => {
         value={text}
       />
       <div className="send">
-        <label htmlFor="file">
+        {/* <label htmlFor="file">
           <img src="img/img.png" alt=""/>
-        </label>
+        </label> */}
         <button onClick={handleSend}>보내기</button>
       </div>
     </div>

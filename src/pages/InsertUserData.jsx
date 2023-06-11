@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 // 파이어베이서 파일에서 import 해온 db
-import {db, auth, storage } from '../firebase-config'
+import {db, auth, storage } from '../config/firebase-config'
 // db에 데이터에 접근을 도와줄 친구들
 import { setDoc, doc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -185,8 +185,8 @@ const InsertUserData = () => {
       alert("Please upload an image first!");
       }
       
-      const storageRef = ref(storage, `/users/${newStudentNo}`);
-      
+      const storageRef = ref(storage, `/${userGender}/${user}/${file.name}`);
+
       // progress can be paused and resumed. It also exposes progress updates.
       // Receives the storage reference and the file to upload.
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -219,7 +219,7 @@ const InsertUserData = () => {
     try{
 
       const date = new Date().getTime();
-      const storageRef = ref(storage, `/users/${newStudentNo}`);
+      const storageRef = ref(storage, `/users/${newStudentNo}/${file.name}`);    
 
       await uploadBytesResumable(storageRef, file).then(() => {
       getDownloadURL(storageRef).then(async (downloadURL) => {
@@ -227,17 +227,23 @@ const InsertUserData = () => {
           //Update profile
           await updateProfile(auth.currentUser, {
             newName,
+            newGender,
+            newAge,
             newMajor,
+            newPhone,
             newStudentNo,
             photoURL: downloadURL,
           });
            //create user on firestore
            await setDoc(doc(db, "users",  auth.currentUser.uid), {
              uid: auth.currentUser.uid,
-             newName,
-             newMajor,
-            newStudentNo,
-            photoURL: downloadURL,
+             name: newName,
+             gender: newGender,
+             age: newAge,
+             major: newMajor,
+             phone: newPhone,
+             studentNo: newStudentNo,
+             photoURL: downloadURL,
            });
 
            //create empty user chats on firestore

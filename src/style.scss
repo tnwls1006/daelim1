@@ -23,44 +23,100 @@
     //mainmenu
     .mainmenu{
       width: 100%;
-      height: 70px;
+      height: 100px;
       // border-bottom:2px solid #82AAE3;
 
       .logo{
-      display: flex;
       align-items: center;
       justify-content: space-between;
       
         img{
-          margin-top: 5px;
+          margin-top: 15px;
           margin-left: 15px;
           height: 70px;
           width: 70px;
           cursor: pointer;
         }
+      }
 
-        .icon{
-          margin-right: 15px;
+      .menu-container{
+        float: right;
 
+        .menu-trigger{
+          background-color: #fff;
+          border-radius: 15px;
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 5px;
+          border: 1px solid #99C0DB;
+          vertical-align: middle;
+          margin: 10px;
+          z-index: 100;
+          width: 150px;
+          height: 70px;
+  
+        span{
+            font-weight: bold;
+            vertical-align: middle;
+            font-size: 18px;
+            margin: 10px;
+          }
           img{
-            height: 40px;
-            width: 40px;
-            float: right;
-            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+          }
+        }
+          
+        .menu{
+          background-color: #d9d9d9;
+          position: fixed;
+          top: 0;
+          width: 350px;
+          height: 100%;
+          opacity: 0.8;
+          visibility: hidden;
+          transform: translateX(-50%);
+        }
+        .menu.active{
+            opacity: 0.8;
+            visibility: visible;
+        }
+        .menu ul{
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .menu li{
+            text-decoration: none;
+            border-bottom: 1px solid #fff;
+            font-weight: bold;
+            font-size: 18px;
+            color: black;
+            padding: 1.5rem;
+          }
+          .menu li:last-of-type{
+            border-bottom: none;
+          }
+          .menu button{
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
           }
         }
       }
-    }
 
 .home {
-  height: 92.5vh;
+  height: 91.5vh;
   display: flex;
   align-items: center;
   justify-content: center;
 
   .container {
-    width: 80%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     display: flex;
     overflow: hidden;
     @include tablet {
@@ -69,88 +125,101 @@
 
 //sidebar.jsx
     .sidebar {
-      flex: 1;
-      max-width: 300px;
+      flex: 2;
+      max-width: 450px;
       position: relative;
       overflow-y: scroll;
+      border-right: 2px solid #99c0db;
 
       &::-webkit-scrollbar{
         display: none;
       }
 //navbar.jsx
-      .navbar {
-        display: flex;
-        align-items: center;
-        border :2px solid #B7B6D9;
-        height: 70px;
-        padding: 7px;
-        justify-content: space-between;
-        color: black;
+      // .navbar {
+      //   display: flex;
+      //   align-items: center;
+      //   border :2px solid #B7B6D9;
+      //   height: 70px;
+      //   padding: 7px;
+      //   justify-content: space-between;
+      //   color: black;
 
-        .logo {
-          font-weight: bold;
-          @include tablet {
-            display: none;
-          }
-        }
+      //   .logo {
+      //     font-weight: bold;
+      //     @include tablet {
+      //       display: none;
+      //     }
+      //   }
 
-        .user {
-          display: flex;
-          gap: 8px;
+      //   .user {
+      //     display: flex;
+      //     gap: 8px;
 
-          img {
-            background-color: #e5e5e5;
-            height: 50px;
-            width: 50px;
-            border: 1px solid grey;
-            border-radius: 50%;
-            object-fit: cover;
-          }
-        }
-      }
+      //     img {
+      //       background-color: #e5e5e5;
+      //       height: 50px;
+      //       width: 50px;
+      //       border: 1px solid grey;
+      //       border-radius: 50%;
+      //       object-fit: cover;
+      //     }
+      //   }
+      // }
       //search.jsx
       .search {
-        border-bottom: 2px solid #B7B6D9;
+        background-color: #99c0db;
 
         .searchForm {
-          padding: 20px;
+          height: 80px;
+          text-align: center;
+          line-height: 80px;
 
           input {
             background-color: transparent;
             border: none;
-            color: black;
+            color: #fff;
             font-weight: bold;
             font-size: 15px;
             outline: none;  // 윤곽선 제거
+            text-align: center;
+
 
             &::placeholder {
-              color: gray;
-              font-weight: bold;
-              font-size: 1.2rem;
+              color: #fff;
+              font-weight: bolder;
+              font-size: 1.3rem;
+            }
+            &:focus::placeholder {
+              opacity: 0;
             }
           }
         }
       }
 //chats.jsx
       .userChat {
+        margin: 5px;
+        border-radius: 25px;
+        height: 100px;
         padding: 10px;
         display: flex;
         align-items: center;
         gap: 12px;
-        color: black;
+        color: #fff;
         cursor: pointer;
-        border-bottom: 2px solid #B7B6D9;
+        background-color:#99C0DB;
         border-collapse: collapse;
 
         &:hover {
-          background-color: #B7B6D9;
-          opacity: 0.8;
+          border: 2px solid #99C0DB;
+          background-color: #fff;
+          color: #000;
         }
 
         img {
-          width: 50px;
-          height: 50px;
-          border-radius: 35%;
+          width: 60px;
+          height: 60px;
+          border: 1px solid gray;
+          border-radius: 50%;
           object-fit: cover;
         }
 
@@ -161,38 +230,45 @@
           }
           p {
             font-size: 14px;
-            color: black;
+            color: gray;
             font-weight: lighter;
           }
         }
       }
     }
+
+    //chat.jsx
     .chat {
-      flex: 3;
+      flex: 4;
 
       .chatInfo {
-        height: 70px;
-        background-color:#B7B6D9;
+        height: 80px;
+        background-color: #99c0db;
+        border-left: none;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 10px;
-        color: white;
+        color: #fff;
         font-weight: bold;
         font-size: 1.3rem;
 
-        img {
-          background-color: #e5e5e5;
-          height: 50px;
-          width: 50px;
-          border-radius: 50%;
-          object-fit: cover;
+        span{
+          margin-left: 30px;
+          line-height: 80px;
         }
+
+        // img {
+        //   background-color: #e5e5e5;
+        //   height: 50px;
+        //   width: 50px;
+        //   border-radius: 50%;
+        //   object-fit: cover;
+        // }
         
       }
-
+// messages uid 오류
       .messages {
-        background-color: #ddddf7;
+        background-color: #fff;
         padding: 10px;
         height: calc(100% - 140px);
         overflow-y: scroll;
@@ -209,10 +285,11 @@
           .messageInfo {
             display: flex;
             flex-direction: column;
-            color: gray;
+            // color: gray;
             font-weight: 300;
 
             img {
+              border: 1px solid gray;
               width: 40px;
               height: 40px;
               border-radius: 50%;
@@ -227,10 +304,11 @@
 
             p {
               background-color: white;
+              border: 1px solid #99c0db;
               padding: 10px 20px;
               border-radius: 0px 10px 10px 10px;
               max-width: max-content;
-              color: #8da4f1;
+              color: black;
             }
 
             img {
@@ -244,8 +322,8 @@
             .messageContent {
               align-items: flex-end;
               p {
-                border: 2px solid #B7B6D9;
-                color: #B7B6D9;
+                color: white;
+                background-color: #99c0db;
                 border-radius: 10px 0px 10px 10px;
               }
             }
@@ -255,20 +333,24 @@
 
       .input {
         height: 70px;
-        background-color: white;
+        background-color: #99c0db;
+        border-left: 1px solid #99c0db;
         padding: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         input {
+          margin: 10px;
+          padding: 5px;
           width: 100%;
           border: none;
           outline: none;
-          color: #2f2d52;
+          color: black;
           font-size: 18px;
 
           &::placeholder {
+            font-size: 13px;
             color: lightgray;
           }
         }
@@ -278,22 +360,23 @@
           align-items: center;
           gap: 10px;
 
-          img {
-            height: 32px;
-            cursor: pointer;
-          }
+          // img {
+          //   height: 32px;
+          //   cursor: pointer;
+          // }
 
           button {
             width: 80px;
             height: 50px;
             border: none;
             padding: 10px 15px;
-            color: white;
-            background-color: #B7B6D9;
+            color: black;
+            background-color: #fff;
+            border-radius: 15px;
             cursor: pointer;
 
-            &:hover{
-              background-color: #5d5b8d;
+            &:active{
+              color: #99c0db;
             }
           }
         }

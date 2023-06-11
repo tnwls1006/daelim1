@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { auth, db } from "../firebase-config";
+import { auth, db } from "../config/firebase-config";
 import { useNavigate, Link } from 'react-router-dom';
 import { getDoc, doc } from 'firebase/firestore'
 import '../styles/MainPage.css';
@@ -47,7 +47,7 @@ const MainPage = () => {
 
       if (userDoc.exists()) {
         const userData = userDoc.data();
-        return userData.newName;
+        return userData.name;
 
       } else {
         console.log('User document does not exist');
@@ -73,22 +73,19 @@ const MainPage = () => {
     <div>
       <div className="header">
         <div className="Lhead">
-          <li><img className="weblogo" src="img/logo.png" /></li>
+          <li><img className="weblogo" src="img/daelimlogo.png" /></li>
         </div>
         <div className="Rhead">
-          <div className='Nav'>
-            <Link to="worldcup"><p>월드컵 가기</p></Link>
+          <div>            
             {emailVerified || <Link to="login"><p>로그인</p></Link>}
             {emailVerified || <Link to="signup"><p>회원가입</p></Link>}
-            {emailVerified && <p>{name}님 안녕하세요 !</p>}
+            {emailVerified && <Link to="mypage"><p>{name}님 안녕하세요 !</p></Link>}
             {emailVerified && <button onClick={Logout}>Logout</button>}
           </div>
-          <Link to="home"><img src="img/masages.png" /></Link>
-          <Link to="mypage"><img src="img/my.png" /></Link>
         </div>
       </div>
       <div className="Menu">
-        <li><a href="#" target="_self"><img src="img/world.png" />World Cup</a></li>
+        <Link to="worldcup"><li><a href="#" target="_self"><img src="img/world.png" />World Cup</a></li></Link>
         <li><a href="#" target="_self"><img src="img/date.png" />Blind Date</a></li>
       </div>
       <div id="wrapper">
@@ -116,32 +113,22 @@ const MainPage = () => {
           </header>
         </div>
       </div>
-      <div id="Bwrapper">
+      {/* <div id="Bwrapper">
         <div className="Bcard">
           <div className="Notice">
             <header>
               <h3>Notice</h3>
             </header>
-            <ul className="Lnotice">
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
-            </ul>
-          </div>
+            </div>
         </div>
         <div className="Bcard">
           <div className="Rank">
             <header>
               <h3>Rank</h3>
             </header>
-            <ul className="Rankli">
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
-            </ul>
-          </div>
+           </div>
         </div>
-      </div>
+      </div> */}
       <div className="footer">
         <div id="bottomMenu">
           <ul>
@@ -153,9 +140,9 @@ const MainPage = () => {
 
         </div>
       </div>
-      <div id="company">
+      {/* <div id="company">
         <p>경기도 수원시 권선구  (대표전화) 123-456-7890</p>
-      </div>
+      </div> */}
     </div>
 
   )

@@ -1,7 +1,7 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { ChatContext } from "../context/ChatContext";
-import { db } from '../firebase-config';
+import { db } from '../config/firebase-config';
 import Message from "./Message";
 
 const Messages = () => {
@@ -29,4 +29,4 @@ const Messages = () => {
   );
 };
 
-export default Messages;
+export default Messages

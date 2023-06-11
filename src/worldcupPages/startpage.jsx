@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState, useEffect, useMemo } from "react";
 import { Link } from 'react-router-dom';
+import king from './img/daelimlogo.png';
 import styles from './startpage.module.css';
 
 function StartPage(){
@@ -27,7 +28,7 @@ function StartPage(){
             <div className={styles.card}>
                 <h1 className={styles.title}>대림대학교 이상형 월드컵</h1>
                 <div className={styles.basic}>
-                    <img className={styles.king} src="img/logo.png" title="메인"/>
+                    <img className={styles.king} src={king} title="메인"/>
                     <h4 className={styles.introduce}>
                     대림대학교에 재학중인 학생들 중 이상형을 뽑아보세요!
                     </h4>
@@ -51,14 +52,14 @@ function StartPage(){
                 <div className={styles.action}>
                 {vsChange === 8 ? 
                     (
-                    <Link to="vs8">
+                    <Link to="vsWomen">
                         <button className={styles.button}>시작하기</button>
                     </Link>
                     )
                     :
                     vsChange === 16 ?
                     (
-                        <Link to="vs16">
+                        <Link to="vsMen">
                         <button className={styles.button}>시작하기</button>
                         </Link>
                     )
