@@ -11,29 +11,25 @@ const MainMenu = () => {
   const [name, setName] = useState('');
   const navigate = useNavigate();
 
-
-  const dropdownRef = useRef(null);
   const [isActive , setIsActive] = useState(false);
+  const dropdownRef = useRef();
 
   const onClick = () => setIsActive(!isActive);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsActive(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   
-  // useEffect(() => {
-  //   const pageClickEvent = (e) => {
-  //     if (dropdownRef.current !== null && !dropdownRef.current.contains(e.target)) {
-  //       setIsActive(false);
-  //     }
-  //   };
-
-  //   if (isActive) {
-  //     window.addEventListener('click', pageClickEvent);
-  //   }
-
-  //   return () => {
-  //     window.removeEventListener('click', pageClickEvent);
-  //   };
-  // }, [isActive]);
-  
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async(user)=>{
       if(user){
